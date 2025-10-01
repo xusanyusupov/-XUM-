@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.inter {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+}
+.playfair {
+    font-family: "Playfair Display", serif;
+}
+
+body{
+    background-color: #EEEEEE;
+}
+  
