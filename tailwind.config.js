@@ -22,6 +22,7 @@ export default {
         hLink: '#6B6B6B',
         hLinkHover: '#000',
         heroMenu: '#333333',  
+        responsiveMenu: '#3333337e',
       },
       container: {
         center: true,
@@ -31,13 +32,16 @@ export default {
           lg: '4rem',         
           xl: '5rem',         
         },
-        screens: {
-          'sm': '640px',
-          'md': '768px',
-          'lg': '1024px',
-          'xl': '1500px',
-        }
       },
+      screens: {  
+        'extra-xs': '350px',
+        'xs': '500px',
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1500px',
+        '3xl':'1800px',
+      }
     }
   },
   plugins: [],
