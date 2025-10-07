@@ -5,7 +5,7 @@ import cart3 from '@/assets/payment/visa.png'
 import { FiShoppingBag } from "react-icons/fi";
 import { MdMenu } from "react-icons/md";
 import { HiOutlineBarsArrowUp } from "react-icons/hi2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header_Link = [
   { link: "#", title: "Breakfast" },
@@ -20,6 +20,13 @@ const paymentTypes = [
 ]
 const Header = () => {
   const [openModal, setOpenModal] = useState(false);
+  useEffect(() => {
+    if(openModal){
+      document.body.style.overflow = 'hidden'
+    }else{
+      document.body.style.overflow = ''
+    }
+  },[openModal])
 
   return (
     <header>
@@ -35,8 +42,8 @@ const Header = () => {
             className={`flex items-center gap-20 inter text-[18px] text-hLink
               max-sm:fixed max-sm:flex-col max-sm:left-0 max-sm:z-[999] max-sm:gap-5
               max-sm:bg-responsiveMenu max-sm:backdrop-blur-lg max-sm:w-full
-              max-sm:items-start max-sm:h-[80%] transition-all duration-500 ease-in-out
-              ${openModal ? "max-sm:top-0" : "max-sm:-top-[80%]"}
+              max-sm:items-start max-sm:h-[75%] transition-all duration-500 ease-in-out
+              ${openModal ? "max-sm:top-0" : "max-sm:-top-[75%]"}
             `}
           >
             {/* Mobile logo */}
