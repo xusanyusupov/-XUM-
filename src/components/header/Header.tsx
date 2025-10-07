@@ -49,7 +49,9 @@ const Header = () => {
           >
             {/* Mobile logo */}
             <li className="hidden max-sm:flex justify-center w-full pt-10">
-              <img src={logo} alt="Logo" /> 
+              <NavLink to={'/'}>
+                <img src={logo} alt="Logo" /> 
+              </NavLink>
             </li>
 
             {/* Links */}
