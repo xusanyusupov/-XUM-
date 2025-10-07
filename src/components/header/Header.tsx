@@ -44,7 +44,7 @@ const Header = () => {
               max-sm:fixed max-sm:flex-col max-sm:left-0 max-sm:z-[999] max-sm:gap-5
               max-sm:bg-responsiveMenu max-sm:backdrop-blur-lg max-sm:w-full
               max-sm:items-start max-sm:h-[75%] transition-all duration-500 ease-in-out
-              ${openModal ? "max-sm:top-0" : "max-sm:-top-[75%]"}
+              ${openModal ? "max-sm:top-0" : "max-sm:-top-[100%]"}
             `}
           >
             {/* Mobile logo */}
