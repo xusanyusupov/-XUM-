@@ -35,8 +35,8 @@ const Header = () => {
             className={`flex items-center gap-20 inter text-[18px] text-hLink
               max-sm:fixed max-sm:flex-col max-sm:left-0 max-sm:z-[999] max-sm:gap-5
               max-sm:bg-responsiveMenu max-sm:backdrop-blur-lg max-sm:w-full
-              max-sm:items-start max-sm:h-3/4 transition-all duration-500 ease-in-out
-              ${openModal ? "max-sm:top-0" : "max-sm:-top-3/4"}
+              max-sm:items-start max-sm:h-[80%] transition-all duration-500 ease-in-out
+              ${openModal ? "max-sm:top-0" : "max-sm:-top-[80%]"}
             `}
           >
             {/* Mobile logo */}
