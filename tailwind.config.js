@@ -23,6 +23,7 @@ export default {
         hLinkHover: '#000',
         heroMenu: '#333333',  
         responsiveMenu: '#3333337e',
+        resMenuTitle: '#008000',
       },
       container: {
         center: true,
