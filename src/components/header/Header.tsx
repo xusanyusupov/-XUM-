@@ -11,6 +11,7 @@ const Header_Link = [
   { link: "#", title: "Breakfast" },
   { link: "#", title: "Lunch" },
   { link: "#", title: "Dinner" },
+  { link: "#", title: "Call Center" },
 ];
 const paymentTypes = [
   {alt:'american-express',img:cart1},
@@ -47,14 +48,16 @@ const Header = () => {
             {Header_Link.map((item, inx) => (
               <li key={inx}>
                 <a href={item.link}>
-                  <span className="hover:text-hLinkHover font-normal max-sm:text-secondary max-sm:pl-3">
+                  <span className="hover:text-hLinkHover inter max-sm:text-secondary max-sm:pl-3">
                     {item.title}
                   </span>
                 </a>
               </li>
             ))}
 
-            <li className="hidden max-sm:w-full max-sm:grid max-sm:grid-cols-3 max-sm:gap-3">
+            <span className="hidden max-sm:w-full max-sm:flex max-sm:text-2xl max-sm:font-bold max-sm:justify-center max-sm:text-mainColor">Xtraordinary Urban Meals</span>
+            <span className="hidden max-sm:w-full max-sm:inter max-sm:flex max-sm:text-center max-sm:text-white">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis, consequuntur!</span>
+            <li className="hidden max-sm:w-full max-sm:grid max-sm:grid-cols-3 max-sm:gap-3 max-sm:pt-10">
               {
                 paymentTypes.map((el,inx) => (
                   <div key={inx} className="flex justify-center bg-white rounded-lg">
@@ -63,6 +66,7 @@ const Header = () => {
                 ))
               }
             </li>
+            
 
             {/* Close modal button */}
             <li className="hidden max-sm:block absolute right-5 top-3">

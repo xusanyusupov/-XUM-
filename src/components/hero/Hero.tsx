@@ -46,7 +46,7 @@ const Hero = () => {
             </p>
             <div className="flex items-start gap-3">
                 <span className="w-14 h-[1px] bg-hLink mt-3 max-xs:hidden"></span>
-                <span className="inter text-hLink">
+                <span className="inter text-hLink max-sm:text-center">
                 Norem ipsum dolor sit amet, <br className="max-3xl:hidden" /> consectetur.
                 </span>
             </div>
