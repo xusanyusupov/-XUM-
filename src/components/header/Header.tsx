@@ -57,7 +57,7 @@ const Header = () => {
 
             <span className="hidden max-sm:w-full max-sm:flex max-sm:text-2xl max-sm:font-bold max-sm:justify-center max-sm:text-mainColor">Xtraordinary Urban Meals</span>
             <span className="hidden max-sm:w-full max-sm:inter max-sm:flex max-sm:text-center max-sm:text-white">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis, consequuntur!</span>
-            <li className="hidden max-sm:w-full max-sm:grid max-sm:grid-cols-3 max-sm:gap-3 max-sm:pt-10">
+            <li className="hidden max-sm:w-full max-sm:grid max-sm:grid-cols-3 max-sm:gap-3 max-sm:pt-5">
               {
                 paymentTypes.map((el,inx) => (
                   <div key={inx} className="flex justify-center bg-white rounded-lg">
