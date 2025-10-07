@@ -6,12 +6,13 @@ import { FiShoppingBag } from "react-icons/fi";
 import { MdMenu } from "react-icons/md";
 import { HiOutlineBarsArrowUp } from "react-icons/hi2";
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Header_Link = [
-  { link: "#", title: "Breakfast" },
-  { link: "#", title: "Lunch" },
-  { link: "#", title: "Dinner" },
-  { link: "#", title: "Call Center" },
+  { link: "/break_fast", title: "Breakfast" },
+  { link: "/lunch", title: "Lunch" },
+  { link: "/dinner", title: "Dinner" },
+  { link: "/call_center", title: "Call Center" },
 ];
 const paymentTypes = [
   {alt:'american-express',img:cart1},
@@ -33,9 +34,9 @@ const Header = () => {
       <div className="container max-md:max-w-none">
         <div className="flex items-center justify-between w-full py-5">
           {/* Logo */}
-          <a href="#">
+          <NavLink to={'/'}>
             <img src={logo} alt="XUM (Icon)" />
-          </a>
+          </NavLink>
 
           {/* Nav menu */}
           <ul
@@ -48,17 +49,17 @@ const Header = () => {
           >
             {/* Mobile logo */}
             <li className="hidden max-sm:flex justify-center w-full pt-10">
-              <img src={logo} alt="Logo" />
+              <img src={logo} alt="Logo" /> 
             </li>
 
             {/* Links */}
             {Header_Link.map((item, inx) => (
               <li key={inx}>
-                <a href={item.link}>
+               <NavLink to={item.link}>
                   <span className="hover:text-hLinkHover inter max-sm:text-secondary max-sm:pl-3">
                     {item.title}
                   </span>
-                </a>
+               </NavLink>
               </li>
             ))}
 

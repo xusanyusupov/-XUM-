@@ -1,12 +1,10 @@
 import './App.css'
-import Header from '@/components/header/Header'
-import Hero from '@/components/hero/Hero'
+import Index from '@/router/index'
 function App() {
 
   return (
     <>
-      <Header/>
-      <Hero/>
+      <Index/>
     </>
   )
 }
