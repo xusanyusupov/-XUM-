@@ -16,3 +16,7 @@ body{
 ::-webkit-scrollbar{
     display: none;
 }
+.playwrite{
+    font-family: "Playwrite AU TAS", cursive;
+    font-style: normal;
+}
