@@ -38,6 +38,7 @@ const Hero = () => {
     
   return (
     <>
+    <div className="h-screen ">
     <div className="w-full flex items-center gap-12 justify-end mt-10 relative max-3xl:static max-3xl:mt-10 max-3xl:flex-col">
         <div className="flex items-center absolute left-48 top-0 max-3xl:static max-3xl:flex-col">
             <div className="flex flex-col gap-5 max-3xl:justify-center">
@@ -92,6 +93,7 @@ const Hero = () => {
             ))}
         </div>
     </div>
+    </div>    
     </>
   );
 };

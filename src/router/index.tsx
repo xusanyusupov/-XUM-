@@ -7,6 +7,7 @@ import Lunch from '@/pages/lunch/Lunch'
 import Dinner from '@/pages/dinner/Dinner'
 import CallCenter from '@/pages/call_center/CallCenter'
 import Home from '@/pages/home/Home'
+import CategoryDetail from '@/pages/detail/CategoryDetail'
 
 const index = () => {
   return (
@@ -18,6 +19,7 @@ const index = () => {
               <Route path='/lunch' element={<Lunch/>}/>
               <Route path='/dinner' element={<Dinner/>}/>
               <Route path='/call_center' element={<CallCenter/>}/>
+              <Route path='/detail/:name' element={<CategoryDetail/>}/>
             </Route>
           <Route path='*' element={<NotFound/>}/>
         </Routes>

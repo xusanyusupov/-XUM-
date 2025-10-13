@@ -13,4 +13,6 @@
 body{
     background-color: #EEEEEE;
 }
-  
+::-webkit-scrollbar{
+    display: none;
+}
