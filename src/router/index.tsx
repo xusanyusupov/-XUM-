@@ -9,21 +9,25 @@ import CallCenter from '@/pages/call_center/CallCenter'
 import Home from '@/pages/home/Home'
 import CategoryDetail from '@/pages/detail/CategoryDetail'
 import ProductDetail from '@/pages/product_detail/ProductDetail'
+import Registration from '@/pages/account/Registration'
+import Login from '@/pages/account/Login'
 import Index from '@/pages/account/Index'
 
 const index = () => {
   return (
     <>
         <Routes>
-          <Route path='/account' element={<Index/>}/>
-            <Route path='/' element={<Layout/>}>
-              <Route path='/' element={<Home/>}/>
-              <Route path='/lunch' element={<Lunch/>}/>
-              <Route path='/dinner' element={<Dinner/>}/>
-              <Route path='/call_center' element={<CallCenter/>}/>
-              <Route path='/detail/:name' element={<CategoryDetail/>}/>
-              <Route path='/meal/:id' element={<ProductDetail/>}/>
-            </Route>
+          <Route path='/registration' element={<Registration/>}/>
+          <Route path='/login' element={<Login/>}/>
+              <Route path='/' element={<Layout/>}>
+                <Route path='/account' element={<Index/>}/>
+                <Route path='/' element={<Home/>}/>
+                <Route path='/lunch' element={<Lunch/>}/>
+                <Route path='/dinner' element={<Dinner/>}/>
+                <Route path='/call_center' element={<CallCenter/>}/>
+                <Route path='/detail/:name' element={<CategoryDetail/>}/>
+                <Route path='/meal/:id' element={<ProductDetail/>}/>
+              </Route>
           <Route path='*' element={<NotFound/>}/>
         </Routes>
     </>

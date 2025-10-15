@@ -2,7 +2,7 @@
 const Index = () => {
   return (
     <>
-    
+    <span>Welcome</span>
     </>
   )
 }
