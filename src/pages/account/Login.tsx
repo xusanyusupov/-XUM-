@@ -5,7 +5,7 @@ import { useFormik } from 'formik'
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import Index from '@/pages/account/Index';
+import { useNavigate } from "react-router-dom";
 
 interface LoginValue {
     username: string,
@@ -13,8 +13,8 @@ interface LoginValue {
 }
 
 const Login = () => {
-    
     const [loggedInUser, setLoggedInUser] = useState<LoginValue | null>(null);
+    const navigate = useNavigate()
 
     const formikLogin = useFormik<LoginValue>({
       initialValues: {
@@ -46,7 +46,7 @@ const Login = () => {
             className: "custom-toast",
           });
           setTimeout(() => {
-            window.location.href = "/account"
+            navigate("/account"); 
           }, 3000);
         } else {
           toast.error("Invalid username or password!", {

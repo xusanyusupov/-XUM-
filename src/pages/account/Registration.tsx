@@ -4,6 +4,8 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
+import { useNavigate } from "react-router-dom";
+
 interface FormValues {
   username: string
   password: string
@@ -11,6 +13,7 @@ interface FormValues {
 
 const Registration = () => {
   const [isUser,setIsUser] = useState<FormValues | null >(null)
+  const navigate = useNavigate()
   const formik = useFormik<FormValues>({
     initialValues: {
       username: "",
@@ -47,7 +50,7 @@ const Registration = () => {
         className: "custom-toast",
       });
       setTimeout(() => {
-        window.location.href = "/account"
+        navigate("/account"); 
       }, 3000);
     },
   });
