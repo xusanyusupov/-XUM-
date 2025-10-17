@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 interface Props {
-  children: JSX.Element;
+  children?: JSX.Element; // optional qilish ham mumkin
 }
 
 interface User {
@@ -18,7 +18,7 @@ const Index = ({ children }: Props) => {
     return <Navigate to="/registration" replace />;
   }
 
-  const [authenticatedUser, setAuthenticatedUser] = useState(
+  const [authenticatedUser, setAuthenticatedUser] = useState<User[]>(
     isAuthenticated ? JSON.parse(isAuthenticated) : []
   );
 
@@ -27,16 +27,17 @@ const Index = ({ children }: Props) => {
     const { value: name } = await Swal.fire({
       title: "Enter new username",
       input: "text",
-      inputLabel: authenticatedUser[inx].username,
+      inputLabel: userEdit.username,
       showCancelButton: true,
     });
+
     if (name) {
-      const updateUser = [...authenticatedUser];
-      updateUser[inx].username = name;
-      setAuthenticatedUser(updateUser);
-      localStorage.setItem("users", JSON.stringify(updateUser));
+      const updatedUsers = [...authenticatedUser];
+      updatedUsers[inx].username = name;
+      setAuthenticatedUser(updatedUsers);
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      Swal.fire(`Updated username to ${name}`);
     }
-    Swal.fire(`Update username ${name}`);
   };
 
   return (
@@ -44,7 +45,7 @@ const Index = ({ children }: Props) => {
       {authenticatedUser.map((el, inx) => (
         <div key={inx}>
           <p>{el.username}</p>
-          <button onClick={() => handleEdit(inx)}>edit</button>
+          <button onClick={() => handleEdit(inx)}>Edit</button>
         </div>
       ))}
     </>
