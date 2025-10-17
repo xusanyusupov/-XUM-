@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 interface Props {
-  children?: JSX.Element; // optional qilish ham mumkin
+  children: JSX.Element; 
 }
 
 interface User {
@@ -42,7 +42,7 @@ const Index = ({ children }: Props) => {
 
   return (
     <>
-      {authenticatedUser.map((el, inx) => (
+      {authenticatedUser.map((el:User, inx:number) => (
         <div key={inx}>
           <p>{el.username}</p>
           <button onClick={() => handleEdit(inx)}>Edit</button>
