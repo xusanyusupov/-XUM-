@@ -9,27 +9,35 @@ import { useNavigate } from "react-router-dom";
 
 interface LoginValue {
     username: string,
-    password: string
+    password: string,
+    phoneNumber: string,
 }
 
 const Login = () => {
     const [loggedInUser, setLoggedInUser] = useState<LoginValue | null>(null);
     const navigate = useNavigate()
+    const prefix ='+998'
 
     const formikLogin = useFormik<LoginValue>({
       initialValues: {
         username: "",
         password: "",
+        phoneNumber: "",
       },
       validationSchema: yup.object({
         username: yup
           .string()
-          .min(4, "Username must be at least 3 characters long")
+          .min(4, 'Username must be at least 3 characters long')
           .required("Username entry is required"),
         password: yup
           .string()
-          .min(6, "Password must be at least 6 characters long")
+          .min(6, 'Password must be at least 6 characters long')
           .required("Password entry is required"),
+        phoneNumber: yup
+            .string()
+            .min(9,'Phone number must be exactly 9 digits')
+            .matches(/^\d{9}$/, 'Phone number must be exactly 9 digits')
+            .required("Phone number entry is required")
       }),
       onSubmit: (values) => {
         const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
@@ -37,7 +45,8 @@ const Login = () => {
         const foundUser = existingUsers.find(
           (user: LoginValue) =>
             user.username === values.username &&
-            user.password === values.password
+            user.password === values.password &&
+            user.phoneNumber === values.phoneNumber
         );
   
         if (foundUser) {
@@ -49,7 +58,7 @@ const Login = () => {
             navigate("/account"); 
           }, 3000);
         } else {
-          toast.error("Invalid username or password!", {
+          toast.error(`Invalid username or password or phone number!`, {
             className: "custom-toast",
           });
         }
@@ -106,6 +115,35 @@ const Login = () => {
                                 <p className="text-red-500 text-xs mt-1">{formikLogin.errors.password}</p>
                             )}
                         </div>
+
+                        <div className="w-full">
+                            <p className="inter pl-2 text-[14px]">Phone number:</p>
+                            <div className="flex gap-2 items-center">
+                                <input
+                                readOnly
+                                value={prefix}
+                                className="w-14 py-1 px-2 rounded-lg border border-mainColor/40"
+                                />
+                                <input
+                                name="phoneNumber"
+                                type="tel"
+                                value={formikLogin.values.phoneNumber}
+                                onChange={formikLogin.handleChange}
+                                onBlur={formikLogin.handleBlur}
+                                placeholder="90-123-45-67"
+                                inputMode="numeric"
+                                className="w-full border border-mainColor/40 py-1 pl-3 rounded-lg"
+                                />
+                            </div>
+                            {formikLogin.touched.password &&
+                                formikLogin.errors.password &&
+                                formikLogin.errors.phoneNumber && (
+                                <p className="text-red-500 pl-2 text-[14px]">
+                                    {formikLogin.errors.phoneNumber}
+                                </p>
+                                )}
+                        </div>
+
                         <button 
                             type='submit'
                             className='bg-mainColor text-secondary py-1 rounded-lg'
