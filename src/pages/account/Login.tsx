@@ -1,173 +1,193 @@
-import logo from '@/assets/head/logo.png'
+import logo from "@/assets/head/logo.png";
 import * as yup from "yup";
-import { Link } from "react-router-dom"
-import { useFormik } from 'formik'
-import { useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 interface LoginValue {
-    username: string,
-    password: string,
-    phoneNumber: string,
+  username: string;
+  password: string;
+  phoneNumber: string;
 }
 
 const Login = () => {
-    const [loggedInUser, setLoggedInUser] = useState<LoginValue | null>(null);
-    const navigate = useNavigate()
-    const prefix ='+998'
+  const [loggedInUser, setLoggedInUser] = useState<LoginValue | null>(null);
+  const navigate = useNavigate();
+  const prefix = "+998";
 
-    const formikLogin = useFormik<LoginValue>({
-      initialValues: {
-        username: "",
-        password: "",
-        phoneNumber: "",
-      },
-      validationSchema: yup.object({
-        username: yup
-          .string()
-          .min(4, 'Username must be at least 3 characters long')
-          .required("Username entry is required"),
-        password: yup
-          .string()
-          .min(6, 'Password must be at least 6 characters long')
-          .required("Password entry is required"),
-        phoneNumber: yup
-            .string()
-            .min(9,'Phone number must be exactly 9 digits')
-            .matches(/^\d{9}$/, 'Phone number must be exactly 9 digits')
-            .required("Phone number entry is required")
-      }),
-      onSubmit: (values) => {
-        const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
-  
-        const foundUser = existingUsers.find(
-          (user: LoginValue) =>
-            user.username === values.username &&
-            user.password === values.password &&
-            user.phoneNumber === values.phoneNumber
-        );
-  
-        if (foundUser) {
-          setLoggedInUser(foundUser);
-          toast.success("Login successful!", {
-            className: "custom-toast",
-          });
-          setTimeout(() => {
-            navigate("/account"); 
-          }, 3000);
-        } else {
-          toast.error(`Invalid username or password or phone number!`, {
-            className: "custom-toast",
-          });
-        }
-      },
-    });
-    return (
-        <>
-            <div className="w-full h-screen flex items-center justify-center">
-                <div className='max-w-md w-full border border-mainColor/40 rounded-lg flex flex-col px-5 py-5'>
-                    <div className='flex items-center gap-3 max-xs:flex-col'>
-                        <div className='w-24 h-24 flex items-center justify-center border border-mainColor rounded-full'> 
-                            <img src={logo} className='w-20 h-20 object-contain' alt='Logo (XUM)'/> 
-                        </div>
-                        <div className='flex flex-col'>
-                            <b className='inter text-2xl text-mainColor text-center whitespace-nowrap max-extra-xs:text-xl'>Xtraordinary Urban Meals</b>
-                            <p className='inter text-xs text-center max-extra-xs:'>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div className='w-full flex items-center justify-center my-4'>
-                        <div className='w-full border border-mainColor'></div>
-                    </div>
-                    <p className='text-mainColor text-center inter text-xl'>Login</p>
+  const formikLogin = useFormik<LoginValue>({
+    initialValues: {
+      username: "",
+      password: "",
+      phoneNumber: "",
+    },
+    validationSchema: yup.object({
+      username: yup
+        .string()
+        .min(4, "Username must be at least 3 characters long")
+        .required("Username entry is required"),
+      password: yup
+        .string()
+        .min(6, "Password must be at least 6 characters long")
+        .required("Password entry is required"),
+      phoneNumber: yup
+        .string()
+        .required("Phone number entry is required")
+        .matches(/^\d+$/, "Phone number must contain only digits")
+        .min(9, "Phone number must be at least 7 digits long")
+        .max(9, "Phone number must be no more than 9 digits"),
+    }),
+    onSubmit: (values) => {
+      const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
 
-                    <form 
-                        onSubmit={formikLogin.handleSubmit}
-                        className='w-full flex flex-col gap-5 px-5'
-                    > 
-                        <div className='w-full'>
-                            <p className='inter pl-2 text-[14px]'>Username:</p>
-                            <input 
-                                autoComplete="off"
-                                name='username'
-                                value={formikLogin.values.username}
-                                onChange={formikLogin.handleChange}
-                                className='w-full border border-mainColor/40 py-1 pl-3 rounded-lg' 
-                                type="text" 
-                            />
-                            
-                            {formikLogin.touched.username && formikLogin.errors.username && (
-                                <p className="text-red-500 text-xs mt-1">{formikLogin.errors.username}</p>
-                            )}
-                        </div>
-                        <div className='w-full'>
-                            <p className='inter pl-2 text-[14px]'>Password:</p>
-                            <input 
-                                autoComplete="off"
-                                name='password'
-                                value={formikLogin.values.password}
-                                onChange={formikLogin.handleChange}
-                                className='w-full border border-mainColor/40 py-1 pl-3 rounded-lg' 
-                                type="password" 
-                            />
-                            {formikLogin.touched.password && formikLogin.errors.password && (
-                                <p className="text-red-500 text-xs mt-1">{formikLogin.errors.password}</p>
-                            )}
-                        </div>
+      const foundUser = existingUsers.find(
+        (user: LoginValue) =>
+          user.username === values.username &&
+          user.password === values.password &&
+          user.phoneNumber === values.phoneNumber
+      );
 
-                        <div className="w-full">
-                            <p className="inter pl-2 text-[14px]">Phone number:</p>
-                            <div className="flex gap-2 items-center">
-                                <input
-                                readOnly
-                                value={prefix}
-                                className="w-14 py-1 px-2 rounded-lg border border-mainColor/40"
-                                />
-                                <input
-                                name="phoneNumber"
-                                type="tel"
-                                value={formikLogin.values.phoneNumber}
-                                onChange={formikLogin.handleChange}
-                                onBlur={formikLogin.handleBlur}
-                                placeholder="90-123-45-67"
-                                inputMode="numeric"
-                                className="w-full border border-mainColor/40 py-1 pl-3 rounded-lg"
-                                />
-                            </div>
-                            {formikLogin.touched.password &&
-                                formikLogin.errors.password &&
-                                formikLogin.errors.phoneNumber && (
-                                <p className="text-red-500 pl-2 text-[14px]">
-                                    {formikLogin.errors.phoneNumber}
-                                </p>
-                                )}
-                        </div>
-
-                        <button 
-                            type='submit'
-                            className='bg-mainColor text-secondary py-1 rounded-lg'
-                        >
-                            Send
-                        </button>
-                    </form>
-
-                    <div className='flex items-center justify-center py-3 max-xs:flex-col'>
-                        <p className='inter'>Do you not have an account?</p>
-                        <p className='inter text-mainColor underline'><Link to={'/registration'}> Registration</Link></p>
-                    </div>
-                </div>
+      if (foundUser) {
+        setLoggedInUser(foundUser);
+        toast.success("Login successful!", {
+          className: "custom-toast",
+        });
+        setTimeout(() => {
+          navigate("/account");
+        }, 3000);
+      } else {
+        toast.error(`Invalid username or password or phone number!`, {
+          className: "custom-toast",
+        });
+      }
+    },
+  });
+  const handlePhoneChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const onlyNumber = e.target.value.replace(/\D/g,'')
+    if (onlyNumber.length <= 9) {
+        formikLogin.setFieldValue('phoneNumber',onlyNumber)
+    }
+}
+  return (
+    <>
+      <div className="w-full h-screen flex items-center justify-center">
+        <div className="max-w-md w-full border border-mainColor/40 rounded-lg flex flex-col px-5 py-5">
+          <div className="flex items-center gap-3 max-xs:flex-col">
+            <div className="w-24 h-24 flex items-center justify-center border border-mainColor rounded-full">
+              <img
+                src={logo}
+                className="w-20 h-20 object-contain"
+                alt="Logo (XUM)"
+              />
             </div>
-            <ToastContainer
-            position="top-center"
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            pauseOnHover
-            theme="light"
-            />
-            <style>{`
+            <div className="flex flex-col">
+              <b className="inter text-2xl text-mainColor text-center whitespace-nowrap max-extra-xs:text-xl">
+                Xtraordinary Urban Meals
+              </b>
+              <p className="inter text-xs text-center max-extra-xs:">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              </p>
+            </div>
+          </div>
+          <div className="w-full flex items-center justify-center my-4">
+            <div className="w-full border border-mainColor"></div>
+          </div>
+          <p className="text-mainColor text-center inter text-xl">Login</p>
+
+          <form
+            onSubmit={formikLogin.handleSubmit}
+            className="w-full flex flex-col gap-5 px-5"
+          >
+            <div className="w-full">
+              <p className="inter pl-2 text-[14px]">Username:</p>
+              <input
+                autoComplete="off"
+                name="username"
+                value={formikLogin.values.username}
+                onChange={formikLogin.handleChange}
+                className="w-full border border-mainColor/40 py-1 pl-3 rounded-lg"
+                type="text"
+              />
+
+              {formikLogin.touched.username && formikLogin.errors.username && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formikLogin.errors.username}
+                </p>
+              )}
+            </div>
+            <div className="w-full">
+              <p className="inter pl-2 text-[14px]">Password:</p>
+              <input
+                autoComplete="off"
+                name="password"
+                value={formikLogin.values.password}
+                onChange={formikLogin.handleChange}
+                className="w-full border border-mainColor/40 py-1 pl-3 rounded-lg"
+                type="password"
+              />
+              {formikLogin.touched.password && formikLogin.errors.password && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formikLogin.errors.password}
+                </p>
+              )}
+            </div>
+
+            <div className="w-full">
+              <p className="inter pl-2 text-[14px]">Phone number:</p>
+              <div className="flex gap-2 items-center">
+                <input
+                  readOnly
+                  value={prefix}
+                  className="w-14 py-1 px-2 rounded-lg border border-mainColor/40"
+                />
+                <input
+                  name="phoneNumber"
+                  type="tel"
+                  value={formikLogin.values.phoneNumber}
+                  onChange={handlePhoneChange}
+                  onBlur={formikLogin.handleBlur}
+                  placeholder="90-123-45-67"
+                  inputMode="numeric"
+                  className="w-full border border-mainColor/40 py-1 pl-3 rounded-lg"
+                />
+              </div>
+              {formikLogin.touched.phoneNumber &&
+                formikLogin.errors.phoneNumber && (
+                  <p className="text-red-500 pl-2 text-[14px]">
+                    {formikLogin.errors.phoneNumber}
+                  </p>
+                )}
+            </div>
+
+            <button
+              type="submit"
+              className="bg-mainColor text-secondary py-1 rounded-lg"
+            >
+              Send
+            </button>
+          </form>
+
+          <div className="flex items-center justify-center py-3 max-xs:flex-col">
+            <p className="inter">Do you not have an account?</p>
+            <p className="inter text-mainColor underline">
+              <Link to={"/registration"}> Registration</Link>
+            </p>
+          </div>
+        </div>
+      </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnHover
+        theme="light"
+      />
+      <style>{`
                 .custom-toast {
                 width: auto !important;
                 max-width: 350px;
@@ -177,8 +197,8 @@ const Login = () => {
                 border-radius: 8px;
                 }
             `}</style>
-        </>
-    )
-}
+    </>
+  );
+};
 
-export default Login
+export default Login;

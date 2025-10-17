@@ -25,17 +25,17 @@ const Registration = () => {
     validationSchema: yup.object({
       username: yup
         .string()
-        .min(4, 'Username must be at least 3 characters long')
+        .min(4, "Username must be at least 3 characters long")
         .required("Username entry is required"),
       password: yup
         .string()
-        .min(6, 'Password must be at least 6 characters long')
+        .min(6, "Password must be at least 6 characters long")
         .required("Password entry is required"),
       phoneNumber: yup
         .string()
-        .min(9,'Phone number must be exactly 9 digits')
-        .matches(/^\d{9}$/, 'Phone number must be exactly 9 digits')
-        .required("Phone number entry is required")
+        .min(9, "Phone number must be exactly 9 digits")
+        .matches(/^\d{9}$/, "Phone number must be exactly 9 digits")
+        .required("Phone number entry is required"),
     }),
     onSubmit: (values) => {
       const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
@@ -62,8 +62,7 @@ const Registration = () => {
       }, 3000);
     },
   });
-  
-  
+
   return (
     <>
       <div className="w-full h-screen flex items-center justify-center">
@@ -131,7 +130,7 @@ const Registration = () => {
               )}
             </div>
 
-              {/* phonr number   */}
+            {/* phonr number   */}
             <div className="w-full">
               <p className="inter pl-2 text-[14px]">Phone number:</p>
               <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
