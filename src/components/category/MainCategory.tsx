@@ -37,7 +37,7 @@ const MainCategory = () => {
 
   return (
     <div className="container max-3xl:mt-96 max-xl:min-w-full max-xl:w-full max-md:mt-60 max-xs:mt-24">
-      <span className="inter flex justify-center text-6xl font-bold pb-16 whitespace-nowrap max-sm:pl-5 max-sm:text-4xl">All food categories</span>
+      <span className="inter flex justify-center text-6xl font-bold pb-16 whitespace-nowrap max-sm:pl-5 max-sm:text-4xl max-extra-xs:text-3xl">All food categories</span>
       <div className="w-full grid grid-cols-7 gap-5 place-items-center max-xl:grid-cols-5 max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2 max-sm:gap-0">
         {
           (isMobile ? data.slice(0,itemsToShow): data).map((el) => (

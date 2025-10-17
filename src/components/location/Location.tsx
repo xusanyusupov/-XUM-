@@ -9,7 +9,7 @@ const Location = () => {
 
   return (
     <div className="container">
-      <span className="inter text-3xl text-mainColor whitespace-nowrap py-2">
+      <span className="inter text-3xl text-mainColor whitespace-nowrap py-2   max-extra-xs:text-xl max-extra-xs:flex max-extra-xs:justify-center">
         Our restaurant addresses
       </span>
 
