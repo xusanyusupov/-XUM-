@@ -45,7 +45,7 @@ const MainCategory = () => {
             key={el.idCategory}
             className="w-48 flex flex-col items-center rounded-lg hover:scale-105 transition overflow-hidden max-sm:w-40"
           >
-            <img src={el.strCategoryThumb} alt={el.strCategory} className="rounded-full w-40 h-40 object-contain bg-secondary hover:bg-mainColor max-sm:w-32 max-sm:h-32" />
+            <img src={el.strCategoryThumb} alt={el.strCategory} className="rounded-full w-40 h-40 object-contain bg-secondary hover:scale-1 max-sm:w-32 max-sm:h-32" />
             <p className="p-2 inter font-bold">{el.strCategory}</p>
           </Link>
           ))

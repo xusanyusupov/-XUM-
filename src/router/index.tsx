@@ -19,17 +19,15 @@ const Router = () => {
       <Route path="/registration" element={<Registration />} />
       <Route path="/login" element={<Login />} />
 
-      <Route path="/" element={<Layout />}>
         <Route
           path="/account"
           element={
             <Index>
-              <h1>Account sahifasi</h1>
+              <h1>Account</h1>
             </Index>
-          }
-        />
-
-        {/* Ommaviy sahifalar */}
+          }/>
+          
+      <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/lunch" element={<Lunch />} />
         <Route path="/dinner" element={<Dinner />} />

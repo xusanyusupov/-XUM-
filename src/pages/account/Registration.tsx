@@ -52,7 +52,6 @@ const Registration = () => {
       }
       const updatedUsers = [...existingUsers, values];
       localStorage.setItem("users", JSON.stringify(updatedUsers));
-      console.log(values);
       setIsUser(values);
       toast.success("Registration successful!", {
         className: "custom-toast",
@@ -150,13 +149,11 @@ const Registration = () => {
                   className="w-full border border-mainColor/40 py-1 pl-3 rounded-lg"
                 />
               </div>
-              {formik.touched.password &&
-                formik.errors.password &&
-                formik.errors.phoneNumber && (
-                  <p className="text-red-500 pl-2 text-[14px]">
-                    {formik.errors.phoneNumber}
-                  </p>
-                )}
+              {formik.touched.phoneNumber && formik.errors.phoneNumber && (
+                <p className="text-red-500 pl-2 text-[14px]">
+                  {formik.errors.phoneNumber}
+                </p>
+              )}
             </div>
 
             <button
