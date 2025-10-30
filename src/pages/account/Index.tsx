@@ -46,11 +46,11 @@ const Index = ({ children }: Props) => {
       Swal.fire(`Updated username to ${name}`);
     }
   };
-  function handleDelete(id:number){
-    setAuthenticatedUser(authenticatedUser.filter((el) => (
-    console.log(el)    
-    )))
-  }
+  // function handleDelete(username:string){
+  //   setAuthenticatedUser(authenticatedUser.filter((el) => (
+  //    el.username !== username 
+  //   )))
+  // }
   return (
     <>
 <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -84,7 +84,7 @@ const Index = ({ children }: Props) => {
                       <span className="inter text-md text-secondary">{el.username}</span>
                         <div className="flex items-center gap-2">
                           <button onClick={() => handleEdit(inx)} className="text-secondary"><MdEdit/></button>
-                          <button onClick={() => handleDelete(el.id)} className="text-secondary"><MdDelete/></button>
+                          <button className="text-secondary"><MdDelete/></button>
                         </div>
                     </li>
                   ))
