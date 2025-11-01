@@ -10,8 +10,7 @@ import CategoryDetail from '@/pages/detail/CategoryDetail'
 import ProductDetail from '@/pages/product_detail/ProductDetail'
 import Registration from '@/pages/account/Registration'
 import Login from '@/pages/account/Login'
-import Index from '@/pages/account/Index' // <-- bu PrivateRoute
-
+import Index from '@/pages/account/Index' 
 const Router = () => {
   return (
     <Routes>
