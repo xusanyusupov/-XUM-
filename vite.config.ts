@@ -12,5 +12,11 @@ export default defineConfig({
       "@": resolve(__dirname, "src")
     }
   },
-  plugins: [react()]
+  plugins: [react()],
+  build: {
+    outDir: "dist", // Vercel shu papkani build natijasi sifatida ishlatadi
+  },
+  server: {
+    historyApiFallback: true, 
+  },
 });
