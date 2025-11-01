@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 export interface FormValues {
+  id:number,
   username: string;
   password: string;
   phoneNumber: string;
@@ -18,6 +19,7 @@ const Registration = () => {
   const navigate = useNavigate();
   const formik = useFormik<FormValues>({
     initialValues: {
+      id: 0,
       username: "",
       password: "",
       phoneNumber: "",
@@ -39,20 +41,25 @@ const Registration = () => {
     }),
     onSubmit: (values) => {
       const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
-
+    
       const userExists = existingUsers.some(
         (user: FormValues) => user.username === values.username
       );
-
+    
       if (userExists) {
         toast.error("This username is already registered!", {
           className: "custom-toast",
         });
         return;
       }
-      const updatedUsers = [...existingUsers, values];
+      const newUser = {
+        ...values,
+        id: Date.now(),
+      };
+      const updatedUsers = [...existingUsers, newUser];
       localStorage.setItem("users", JSON.stringify(updatedUsers));
-      setIsUser(values);
+      setIsUser(newUser);
+    
       toast.success("Registration successful!", {
         className: "custom-toast",
       });
@@ -60,6 +67,7 @@ const Registration = () => {
         navigate("/account");
       }, 3000);
     },
+    
   });
 
   return (

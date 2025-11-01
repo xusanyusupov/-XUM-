@@ -15,7 +15,7 @@ interface Props {
 }
 
 interface User {
-  id: string;
+  id: number;
   username: string;
 }
 
@@ -46,11 +46,26 @@ const Index = ({ children }: Props) => {
       Swal.fire(`Updated username to ${name}`);
     }
   };
-  // function handleDelete(username:string){
-  //   setAuthenticatedUser(authenticatedUser.filter((el) => (
-  //    el.username !== username 
-  //   )))
-  // }
+  const handleDelete = async (id: number) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      const updatedUsers = authenticatedUser.filter((user) => user.id !== id);
+      setAuthenticatedUser(updatedUsers);
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+      Swal.fire("Deleted!", "User has been removed.", "success");
+    }
+  };
+
   return (
     <>
 <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -68,7 +83,8 @@ const Index = ({ children }: Props) => {
               <IoIosHome className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"/>
               <span className="flex-1 ms-3 whitespace-nowrap">Home Page</span>
             </NavLink>
-         </li>
+          </li>
+
          <li>
             <button type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                  <FaUser className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"/>
@@ -79,15 +95,7 @@ const Index = ({ children }: Props) => {
             </button>
             <ul id="dropdown-example" className="hidden py-2 space-y-2 w-full">
                 {
-                  authenticatedUser.map((el:User,inx:number) =>(
-                    <li key={inx} className="w-full flex items-center justify-between px-3">
-                      <span className="inter text-md text-secondary">{el.username}</span>
-                        <div className="flex items-center gap-2">
-                          <button onClick={() => handleEdit(inx)} className="text-secondary"><MdEdit/></button>
-                          <button className="text-secondary"><MdDelete/></button>
-                        </div>
-                    </li>
-                  ))
+                  
                 }
             </ul>
          </li>
