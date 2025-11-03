@@ -9,14 +9,12 @@ const __dirname = dirname(__filename);
 export default defineConfig({
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src")
-    }
+      "@": resolve(__dirname, "src"),
+    },
   },
   plugins: [react()],
   build: {
     outDir: "dist", // Vercel shu papkani build natijasi sifatida ishlatadi
   },
-  server: {
-    historyApiFallback: true, 
-  },
+  base: "/", // ⚠️ bu qo‘shilishi kerak
 });
