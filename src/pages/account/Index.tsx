@@ -95,7 +95,11 @@ const Index = ({ children }: Props) => {
             </button>
             <ul id="dropdown-example" className="hidden py-2 space-y-2 w-full">
                 {
-                  
+                  authenticatedUser.map((el) => (
+                    <li>
+                      <span>{el.username}</span>
+                    </li>
+                  ))
                 }
             </ul>
          </li>
