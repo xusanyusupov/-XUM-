@@ -14,7 +14,7 @@ export default defineConfig({
   },
   plugins: [react()],
   build: {
-    outDir: "dist", // Vercel shu papkani build natijasi sifatida ishlatadi
+    outDir: "dist", 
   },
-  base: "/", // ⚠️ bu qo‘shilishi kerak
+  base: "/",
 });
