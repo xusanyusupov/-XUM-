@@ -8,24 +8,9 @@ import CallCenter from '@/pages/call_center/CallCenter'
 import Home from '@/pages/home/Home'
 import CategoryDetail from '@/pages/detail/CategoryDetail'
 import ProductDetail from '@/pages/product_detail/ProductDetail'
-import Registration from '@/pages/account/Registration'
-import Login from '@/pages/account/Login'
-import Index from '@/pages/account/Index' 
 const Router = () => {
   return (
     <Routes>
-      {/* Ochiq sahifalar */}
-      <Route path="/registration" element={<Registration />} />
-      <Route path="/login" element={<Login />} />
-
-        <Route
-          path="/account"
-          element={
-            <Index>
-              <h1>Account</h1>
-            </Index>
-          }/>
-          
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/lunch" element={<Lunch />} />
@@ -34,7 +19,6 @@ const Router = () => {
         <Route path="/detail/:name" element={<CategoryDetail />} />
         <Route path="/meal/:id" element={<ProductDetail />} />
       </Route>
-
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
     </Routes>
